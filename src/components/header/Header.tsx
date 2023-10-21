@@ -1,6 +1,6 @@
 "use client";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 
 const Header: React.FC = () => {
   const [typedText, setTypedText] = useState("");
@@ -11,31 +11,36 @@ const Header: React.FC = () => {
     "Graphic Designer",
     "Video Editor",
   ];
-  let currentDescriptionIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
+
+  const charIndexRef = useRef(0);
+  const isDeletingRef = useRef(false);
+  const currentDescriptionIndexRef = useRef(0);
 
   useEffect(() => {
     const typeDescription = () => {
-      const currentDescription = descriptions[currentDescriptionIndex];
+      const currentDescription =
+        descriptions[currentDescriptionIndexRef.current];
       const currentLength = typedText.length;
 
-      if (!isDeleting) {
-        setTypedText(currentDescription.substring(0, charIndex + 1));
-        charIndex++;
+      if (!isDeletingRef.current) {
+        setTypedText(currentDescription.substring(0, charIndexRef.current + 1));
+        charIndexRef.current++;
       } else {
-        setTypedText(currentDescription.substring(0, charIndex - 1));
-        charIndex--;
+        setTypedText(currentDescription.substring(0, charIndexRef.current - 1));
+        charIndexRef.current--;
       }
 
-      if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        currentDescriptionIndex =
-          (currentDescriptionIndex + 1) % descriptions.length;
+      if (isDeletingRef.current && charIndexRef.current === 0) {
+        isDeletingRef.current = false;
+        currentDescriptionIndexRef.current =
+          (currentDescriptionIndexRef.current + 1) % descriptions.length;
       }
 
-      if (!isDeleting && charIndex === currentDescription.length) {
-        isDeleting = true;
+      if (
+        !isDeletingRef.current &&
+        charIndexRef.current === currentDescription.length
+      ) {
+        isDeletingRef.current = true;
       }
     };
 
@@ -56,7 +61,7 @@ const Header: React.FC = () => {
           </p>
           <p>
             I am always looking for new and innovative ways to bring my clients'
-            visions to life. I believe that webpage is about more than just
+            visions to life. I believe that a webpage is about more than just
             making things look pretty - it's about solving problems and creating
             intuitive, enjoyable experiences for users.
           </p>
@@ -68,7 +73,6 @@ const Header: React.FC = () => {
           </p>
         </div>
 
-        {/* Right Column (Image) */}
         <div>
           <Image
             src="/satyam-with-macbook.png"
