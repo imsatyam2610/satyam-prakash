@@ -4,8 +4,8 @@ import Image from "next/image";
 
 const Header: React.FC = () => {
   return (
-    <header className="p-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="p-4 max-md:mt-14">
+      <div className="container mx-auto md:flex justify-between items-center">
         {/* Left Column (Text) */}
         <div className="max-w-lg">
           <p className="text-4xl font-bold">Hi, I am</p>
@@ -30,9 +30,9 @@ const Header: React.FC = () => {
 
         <div>
           <Image
-            src="/satyam-with-macbook.png"
+            src="/Satyam-with-macbook.png"
             alt="Your Image"
-            className="rounded-[120px]"
+            className="rounded-[120px] max-md:rounded-full"
             width={560}
             height={520}
           />

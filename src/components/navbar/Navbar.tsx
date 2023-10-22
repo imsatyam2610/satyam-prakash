@@ -7,32 +7,35 @@ import { BsLinkedin } from "react-icons/bs";
 const Navbar: React.FC = () => {
   return (
     <nav className="p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Left Column */}
+      <div className="container mx-auto md:flex justify-between items-center align-middle">
+        
         <div className="flex space-x-4">
           {/* Add your left menu items here */}
-          <Link href="/" className="">
+          <Link href="/" className="p-1 bg-violet-200 rounded-md">
             Home
           </Link>
-          <Link href="#about" className="">
+          <Link href="#about" className="p-1 bg-orange-200 rounded-md">
             About
           </Link>
-          <Link href="#skills" className="">
+          <Link href="#skills" className="p-1 bg-blue-200 rounded-md">
             Skills
           </Link>
-          <Link href="#Projects">Projects</Link>
-          <Link href="#Experience">Experience</Link>
+          <Link href="#Projects" className="p-1 bg-green-200 rounded-md">
+            Projects
+          </Link>
+          <Link href="#Experience" className="p-1 bg-yellow-200 rounded-md">
+            Experience
+          </Link>
         </div>
 
-        {/* Center Logo */}
-        <div className="rounded-full bg-black p-3">
+        <div className="rounded-full bg-black p-3 float-left max-md:mt-2">
           <Link href="#" className="text-2xl font-bold text-white">
             SP
           </Link>
         </div>
 
         {/* Right Column */}
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 float-right max-md:mt-6">
           <Link href="#" className="text-[#0072b1]">
             <BsLinkedin size={24} />
           </Link>
